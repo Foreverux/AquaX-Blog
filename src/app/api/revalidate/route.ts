@@ -8,6 +8,16 @@ import { NextRequest, NextResponse } from 'next/server';
 
 import { CACHE_TAGS, isAllowedCacheTag } from '@/lib/cache-tags';
 
+const corsHeaders = {
+  'Access-Control-Allow-Origin': '*',
+  'Access-Control-Allow-Methods': 'POST, OPTIONS',
+  'Access-Control-Allow-Headers': 'Content-Type',
+};
+
+export async function OPTIONS() {
+  return new NextResponse(null, { status: 204, headers: corsHeaders });
+}
+
 export async function POST(req: NextRequest) {
   // 默认清空全部缓存标签
   let tags: string[] = Object.values(CACHE_TAGS);
@@ -29,12 +39,12 @@ export async function POST(req: NextRequest) {
   const invalidTags = tags.filter((tag) => !isAllowedCacheTag(tag));
   // 如果无效的标签，则返回 400 错误
   if (invalidTags.length) {
-    return NextResponse.json({ message: 'Invalid tags', invalidTags }, { status: 400 });
+    return NextResponse.json({ message: 'Invalid tags', invalidTags }, { status: 400, headers: corsHeaders });
   }
 
   // 重新验证标签，标记 max 允许先返回旧数据，同时在后台拉新数据
   tags.forEach((tag) => revalidateTag(tag, 'max'));
 
   // 返回响应
-  return NextResponse.json({ revalidated: true, tags });
+  return NextResponse.json({ revalidated: true, tags }, { headers: corsHeaders });
 }
