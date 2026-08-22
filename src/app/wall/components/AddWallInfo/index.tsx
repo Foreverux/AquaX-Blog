@@ -119,11 +119,11 @@ export default () => {
         <FormProvider {...methods}>
           <form className="space-y-4" onSubmit={methods.handleSubmit(onSubmit)}>
             <Textarea name="content" label="留言内容" placeholder="示例：你好呀！" rules={{ required: '请输入留言内容' }} />
-            <Input name="name" label="你的名称（选填）" placeholder="示例：宇阳" />
+            <Input name="name" label="你的名称（选填）" placeholder="示例：JiangQing" />
             <Input
               name="email"
               label="你的邮箱（选填）"
-              placeholder="示例：3311118881@qq.com"
+              placeholder="示例：2455452294@qq.com"
               rules={{
                 pattern: {
                   value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
