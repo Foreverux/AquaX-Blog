@@ -33,6 +33,7 @@ const nextConfig = {
     },
     // 配置图片来源
     images: {
+        unoptimized: isDev,
         qualities: [75, 80, 90, 100],
         remotePatterns: [
             {
