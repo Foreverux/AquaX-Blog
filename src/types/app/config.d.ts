@@ -50,17 +50,18 @@ export interface Other {
 }
 
 
-export type EnvConfigName = 'baidu_statis' | 'email' | 'gaode_map' | 'gaode_coordinate'
+export type EnvConfigName = 'baidu_statis_key' | 'email' | 'gaode_map_key' | 'gaode_coordinate'
 
 export interface EnvConfigKey {
     key: string
+    value: unknown
 }
 
 // 公开环境配置
 export interface PublicConfig {
     baidu_statis_key: EnvConfigKey | null
     hcaptcha_key: EnvConfigKey | null
-    gaode_map_kay: EnvConfigKey | null
+    gaode_map_key: EnvConfigKey | null
 }
 
 export interface Config {

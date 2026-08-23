@@ -42,8 +42,9 @@ export default function FootprintPageClient({ list }: FootprintPageClientProps) 
       let key_code: string;
       let security_code: string;
       try {
-        const { data: cfg } = await getGaodeMapConfigDataAPI();
-        ({ key_code, security_code } = cfg as { key_code: string; security_code: string });
+        const responseData = await getGaodeMapConfigDataAPI();
+        const { gaode_map_key: cfg } = responseData.data;
+        ({ key_code, security_code } = cfg?.value as { key_code: string; security_code: string });
       } catch (e) {
         console.error('加载地图配置失败：', e);
         setMapLoadError(
