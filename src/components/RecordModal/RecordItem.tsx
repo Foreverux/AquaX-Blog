@@ -18,7 +18,7 @@ interface Props {
   likeCount?: number;
   mood?: string;
   location?: string;
-  createTime?: string | number | Date;
+  createTime?: string;
   user: Pick<User, 'avatar' | 'name'> | null;
 }
 

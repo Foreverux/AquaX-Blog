@@ -2,6 +2,7 @@ import { MetadataRoute } from 'next';
 import { connection } from 'next/server';
 import { getAllArticleListCacheAPI } from '@/lib/article';
 import { getWebConfigCacheAPI } from '@/lib/config';
+import { normalizeTime } from '@/utils/time';
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   await connection();
@@ -62,7 +63,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     .filter((article) => article.id && article.createTime)
     .map((article) => ({
       url: `${baseUrl}/article/${article.id}`,
-      lastModified: new Date(+article.createTime),
+      lastModified: new Date(normalizeTime(article.createTime)),
       changeFrequency: 'weekly' as const,
       priority: 0.9,
     }));

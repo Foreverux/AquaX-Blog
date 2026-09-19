@@ -7,6 +7,7 @@ import { motion, useMotionValue, useTransform, animate, useInView } from 'framer
 import TimerSvg from '@/assets/svg/other/timer.svg';
 import useMounted from '@/hooks/useMounted';
 import SidebarCard from '@/components/Sidebar/SidebarCard';
+import { normalizeTime } from '@/utils/time';
 
 const AnimatedNumber = ({
   value,
@@ -167,10 +168,10 @@ const AnimatedAlarmClockInner = () => {
   );
 };
 
-const calculateTimeDifference = (startTimestamp?: number) => {
+const calculateTimeDifference = (startTimestamp?: string) => {
   if (!startTimestamp) return { years: 0, months: 0, days: 0, totalDays: 0 };
 
-  const startDate = new Date(+startTimestamp);
+  const startDate = new Date(normalizeTime(startTimestamp));
   const currentDate = new Date();
 
   let years = currentDate.getFullYear() - startDate.getFullYear();

@@ -11,6 +11,7 @@ import { Accordion, AccordionItem, Spinner } from '@/ThriveUI';
 import archiving from './svg/archiving.svg';
 import { AiOutlineEye } from 'react-icons/ai';
 import dayjs from 'dayjs';
+import { normalizeTime } from '@/utils/time';
 
 interface MonthData {
   total: number;
@@ -53,7 +54,7 @@ export default ({ list }: { list: Article[] }) => {
     const groupedData: Record<number, YearData> = {};
 
     data.forEach((item) => {
-      const date = new Date(+item.createTime!);
+      const date = new Date(normalizeTime(item.createTime!));
       const year = date.getFullYear();
       const month = date.getMonth() + 1;
       const wordCount = item.content ? item.content.length : 0;
@@ -120,7 +121,7 @@ export default ({ list }: { list: Article[] }) => {
                             >
                               <span className="flex-1 truncate">
                                 <span className="text-slate-400 dark:text-slate-500 text-sm tabular-nums mr-2">
-                                  {dayjs(+article.createTime!).format('MM-DD')}
+                                  {dayjs(normalizeTime(article.createTime!)).format('MM-DD')}
                                 </span>
                                 {article.title}
                               </span>

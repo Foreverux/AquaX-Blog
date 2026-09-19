@@ -1,5 +1,6 @@
 import { Fragment } from 'react';
 import dayjs from 'dayjs';
+import { normalizeTime } from '@/utils/time';
 import { FiCalendar, FiEye } from 'react-icons/fi';
 import { IconType } from 'react-icons';
 import { Article } from '@/types/app/article';
@@ -21,7 +22,7 @@ function buildMetaItems(article: ArticleMetaProps['article']): MetaItem[] {
     {
       key: 'date',
       icon: FiCalendar,
-      label: dayjs(+article.createTime!).format('YYYY-MM-DD'),
+      label: dayjs(normalizeTime(article.createTime!)).format('YYYY-MM-DD'),
     },
     {
       key: 'view',

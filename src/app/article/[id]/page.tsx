@@ -30,6 +30,7 @@ import { AiOutlineComment } from 'react-icons/ai';
 import { LuTimer } from 'react-icons/lu';
 
 import dayjs from 'dayjs';
+import { normalizeTime } from '@/utils/time';
 import Encrypt from '@/components/Encrypt';
 import NotFound from '@/app/not-found';
 
@@ -74,7 +75,7 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
           alt: article.title,
         },
       ],
-      publishedTime: new Date(+article.createTime).toISOString(),
+      publishedTime: new Date(normalizeTime(article.createTime)).toISOString(),
     },
     twitter: {
       card: 'summary_large_image',
@@ -162,7 +163,7 @@ export default async (props: Props) => {
                       <span className={`${iconSty} bg-[#5A9CF8]`}>
                         <LuTimer />
                       </span>
-                      <span>{dayjs(+data?.createTime).format('YYYY-MM-DD HH:mm')}</span>
+                      <span>{dayjs(normalizeTime(data?.createTime!)).format('YYYY-MM-DD HH:mm')}</span>
                     </div>
                   </div>
                 </div>

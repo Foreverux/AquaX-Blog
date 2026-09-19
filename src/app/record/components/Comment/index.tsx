@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
+import dayjs from 'dayjs';
 import { type SubmitHandler } from 'react-hook-form';
 import { Bounce, ToastOptions, toast } from 'react-toastify';
 import { FormProvider, Input, Spinner, Textarea, useForm } from '@/ThriveUI';
@@ -120,7 +121,7 @@ export default function RecordCommentPanel({ recordId, onCountChange }: Props) {
       ...data,
       recordId,
       commentId,
-      createTime: Date.now().toString(),
+      createTime: dayjs().format('YYYY-MM-DD HH:mm:ss'),
       h_captcha_response: captchaToken,
     });
 

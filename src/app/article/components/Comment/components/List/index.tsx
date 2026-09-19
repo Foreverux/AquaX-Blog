@@ -8,6 +8,7 @@ import RandomAvatar from '@/components/RandomAvatar';
 import { Comment } from '@/types/app/comment';
 import { RiMessage3Line } from 'react-icons/ri';
 import dayjs from 'dayjs';
+import { normalizeTime } from '@/utils/time';
 import { getArticleCommentListAPI } from '@/api/comment';
 import { ClientPagination } from '@/ThriveUI';
 
@@ -60,7 +61,7 @@ const CommentList = forwardRef(({ id, reply }: Props, ref) => {
                   ) : (
                     <span className="text-base text-[#444] dark:text-white">{one.name}</span>
                   )}
-                  <span className="text-sm text-[#8599ab] dark:text-[#8c9ab1]">{dayjs(+one.createTime).format('YYYY-MM-DD HH:mm')}</span>
+                  <span className="text-sm text-[#8599ab] dark:text-[#8c9ab1]">{dayjs(normalizeTime(one.createTime)).format('YYYY-MM-DD HH:mm')}</span>
                 </div>
 
                 <div
@@ -87,7 +88,7 @@ const CommentList = forwardRef(({ id, reply }: Props, ref) => {
                           <span className="mr-4 text-[15px] text-[#444] dark:text-white">{two.name}</span>
                         )}
 
-                        <span className="text-xs text-[#8599ab] dark:text-[#8c9ab1]">{dayjs(+two.createTime).format('YYYY-MM-DD HH:mm')}</span>
+                        <span className="text-xs text-[#8599ab] dark:text-[#8c9ab1]">{dayjs(normalizeTime(two.createTime)).format('YYYY-MM-DD HH:mm')}</span>
                         <div
                           className="absolute right-[-15%] cursor-pointer rounded-[30px] bg-primary px-2.5 py-1 text-xl text-white transition-[right] duration-300 group-hover/item:right-[2%]"
                           onClick={() => replyComment(two.id!, two.name)}
@@ -115,7 +116,7 @@ const CommentList = forwardRef(({ id, reply }: Props, ref) => {
                                 <span className="mr-4 text-[15px] text-[#444] dark:text-white">{three.name}</span>
                               )}
 
-                              <span className="text-xs text-[#8599ab] dark:text-[#8c9ab1]">{dayjs(+three.createTime).format('YYYY-MM-DD HH:mm')}</span>
+                              <span className="text-xs text-[#8599ab] dark:text-[#8c9ab1]">{dayjs(normalizeTime(three.createTime)).format('YYYY-MM-DD HH:mm')}</span>
 
                               <div
                                 className="absolute right-[-15%] cursor-pointer rounded-[30px] bg-primary px-2.5 py-1 text-xl text-white transition-[right] duration-300 group-hover/item:right-[2%]"
@@ -145,7 +146,7 @@ const CommentList = forwardRef(({ id, reply }: Props, ref) => {
                                     <span className="mr-4 text-[15px] text-[#444] dark:text-white">{four.name}</span>
                                   )}
 
-                                  <span className="text-xs text-[#8599ab] dark:text-[#8c9ab1]">{dayjs(+four.createTime).format('YYYY-MM-DD HH:mm')}</span>
+                                  <span className="text-xs text-[#8599ab] dark:text-[#8c9ab1]">{dayjs(normalizeTime(four.createTime)).format('YYYY-MM-DD HH:mm')}</span>
 
                                   <div
                                     className="absolute right-[-15%] cursor-pointer rounded-[30px] bg-primary px-2.5 py-1 text-xl text-white transition-[right] duration-300 group-hover/item:right-[2%]"
@@ -174,7 +175,7 @@ const CommentList = forwardRef(({ id, reply }: Props, ref) => {
                                       <span className="mr-4 text-[15px] text-[#444] dark:text-white">{five.name}</span>
                                     )}
 
-                                    <span className="text-xs text-[#8599ab] dark:text-[#8c9ab1]">{dayjs(+five.createTime).format('YYYY-MM-DD HH:mm')}</span>
+                                    <span className="text-xs text-[#8599ab] dark:text-[#8c9ab1]">{dayjs(normalizeTime(five.createTime)).format('YYYY-MM-DD HH:mm')}</span>
 
                                     <div
                                       className="absolute right-[-15%] cursor-pointer rounded-[30px] bg-primary px-2.5 py-1 text-xl text-white transition-[right] duration-300 group-hover/item:right-[2%]"

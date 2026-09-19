@@ -1,3 +1,4 @@
+export * from './time';
 export * from './dayFormat';
 export * from './await-io';
 export * from './htmlParser';

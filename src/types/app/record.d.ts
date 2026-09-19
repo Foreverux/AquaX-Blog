@@ -5,5 +5,5 @@ export interface Record {
     likeCount?: number,
     mood?: string,
     location?: string,
-    createTime?: string | Dayjs;
+    createTime?: string;
 }

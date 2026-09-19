@@ -22,13 +22,14 @@ import {
 import { useAppConfig } from '@/components/AppConfigProvider';
 import { generateArticlePoster } from '@/utils/generateArticlePoster';
 import dayjs from 'dayjs';
+import { normalizeTime } from '@/utils/time';
 
 export interface ArticleShareData {
   articleId: number;
   title: string;
   description: string;
   cover: string;
-  createTime: string | number;
+  createTime: string;
   view?: number;
   likeCount?: number;
 }
@@ -64,7 +65,7 @@ export default function ArticleSharePoster({ data, minimal = false, className, s
         articleUrl,
         favicon: web?.favicon,
         authorName: author?.name,
-        createTime: dayjs(+data.createTime).format('YYYY-MM-DD'),
+        createTime: dayjs(normalizeTime(data.createTime)).format('YYYY-MM-DD'),
         view: data.view,
         likeCount: data.likeCount,
       });

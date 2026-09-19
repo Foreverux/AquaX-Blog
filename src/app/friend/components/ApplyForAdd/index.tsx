@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState, useRef } from 'react';
+import dayjs from 'dayjs';
 import {
   Button,
   Modal,
@@ -69,7 +70,7 @@ export default () => {
     setLoading(true);
     const { code, message } = await addWebAction({
       ...data,
-      createTime: Date.now().toString(),
+      createTime: dayjs().format('YYYY-MM-DD HH:mm:ss'),
       h_captcha_response: captchaToken!,
     });
     if (code !== 200) {

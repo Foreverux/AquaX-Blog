@@ -158,7 +158,7 @@ export default function RecordModal() {
                       likeCount={item.likeCount}
                       mood={item.mood}
                       location={item.location}
-                      createTime={item.createTime as string | number | undefined}
+                      createTime={item.createTime}
                       user={author}
                     />
                   ))}

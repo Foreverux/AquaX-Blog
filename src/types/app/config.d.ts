@@ -22,7 +22,7 @@ export interface Web {
     keyword: string,
     footer: string,
     icp: string,
-    create_time: number,
+    create_time: string,
 }
 
 export type ArticleLayout = 'classics' | 'card' | 'waterfall' | ''

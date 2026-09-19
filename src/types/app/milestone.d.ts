@@ -1,6 +1,6 @@
 export interface Milestone {
   id: number;
-  eventDate: number;
+  eventDate: string;
   title: string;
   description: string;
   image?: string;

@@ -5,7 +5,7 @@ export interface Footprint {
     content: string;
     position: string;
     images: string[];
-    createTime?: string | Dayjs;
+    createTime?: string;
 }
 
 export interface FilterFootprint {

@@ -1,4 +1,5 @@
 import dayjs from 'dayjs';
+import { normalizeTime } from './time';
 import relativeTime from 'dayjs/plugin/relativeTime';
 import localeData from 'dayjs/plugin/localeData';
 import updateLocale from 'dayjs/plugin/updateLocale';
@@ -26,9 +27,9 @@ dayjs.updateLocale('en', {
     }
 });
 
-export function dayFormat(timestamp: number | string) {
+export function dayFormat(timestamp: string) {
     const now = dayjs();
-    const target = dayjs(+timestamp);
+    const target = dayjs(normalizeTime(timestamp));
 
     if (now.isSame(target, 'day')) {
         return '今天';
@@ -41,10 +42,10 @@ export function dayFormat(timestamp: number | string) {
     }
 }
 
-export function getRelativeTimeLabel(ts: string | number | Date | undefined): string {
+export function getRelativeTimeLabel(ts: string | undefined): string {
     if (ts == null) return '';
     const now = dayjs();
-    const then = dayjs(+ts);
+    const then = dayjs(normalizeTime(ts));
     const diffDays = now.startOf('day').diff(then.startOf('day'), 'day');
     const diffMonths = now.diff(then, 'month', true);
     const diffYears = now.diff(then, 'year', true);

@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import dayjs from 'dayjs';
+import { normalizeTime } from '@/utils/time';
 import { RiTimeLine } from 'react-icons/ri';
 
 import { getCommentListCacheAPI } from '@/lib/comment';
@@ -23,8 +24,8 @@ const NewComments = async () => {
 
             <div className="flex items-center gap-1 mt-1.5 text-[12px] text-slate-400 dark:text-[#8c9ab1]/70 font-medium transition-none">
               <RiTimeLine className="text-[14px]" />
-              <time dateTime={dayjs(+item.createTime!).toISOString()}>
-                {dayjs(+item.createTime!).format('YYYY-MM-DD HH:mm')}
+              <time dateTime={dayjs(normalizeTime(item.createTime!)).toISOString()}>
+                {dayjs(normalizeTime(item.createTime!)).format('YYYY-MM-DD HH:mm')}
               </time>
             </div>
           </div>

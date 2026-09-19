@@ -4,6 +4,7 @@ import { connection, NextResponse } from 'next/server';
 import { getArticlePagingCacheAPI } from '@/lib/article';
 import { getAuthorDataCacheAPI, getWebConfigCacheAPI } from '@/lib/config';
 import { getRecordListCacheAPI } from '@/lib/record';
+import { normalizeTime } from '@/utils/time';
 
 export async function GET() {
   await connection();
@@ -17,7 +18,7 @@ export async function GET() {
 
   // 合并文章和说说，并根据时间排序
   const list = [...articleList, ...recordList].sort((a, b) => {
-    return +b.createTime! - +a.createTime!;
+    return new Date(normalizeTime(b.createTime!)).getTime() - new Date(normalizeTime(a.createTime!)).getTime();
   });
 
   const feed = new Feed({
@@ -56,7 +57,7 @@ export async function GET() {
         ]
         : [],
       copyright: 'AquaX 现代化博客管理系统',
-      date: new Date(+item?.createTime),
+      date: new Date(normalizeTime(item?.createTime!)),
     });
   });
 

@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
+import dayjs from 'dayjs';
 import { useForm } from 'react-hook-form';
 import { addArticleCommentAction } from '@/actions/article';
 import { Bounce, ToastOptions, toast } from 'react-toastify';
@@ -97,7 +98,7 @@ const CommentForm = ({ articleId }: Props) => {
       ...data,
       articleId,
       commentId: commentId === articleId ? 0 : commentId,
-      createTime: Date.now().toString(),
+      createTime: dayjs().format('YYYY-MM-DD HH:mm:ss'),
       h_captcha_response: captchaToken,
     });
 

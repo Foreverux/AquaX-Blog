@@ -4,6 +4,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
 import PhotoPreview, { type PhotoItem } from '@/ThriveUI/PhotoPreview';
 import type { Milestone } from '@/types/app/milestone';
+import { normalizeTime } from '@/utils/time';
 
 const SIDE_PAD = 400;
 const CARD_SP = 560;
@@ -23,12 +24,12 @@ const starsClass = 'stars pointer-events-none fixed left-0 top-0 z-1 size-px wil
 const timelineDotClass = 'timeline-dot absolute z-20 opacity-0';
 const glassCardClass = 'glass-card visible absolute z-25 w-[300px] overflow-hidden rounded-[18px] border border-white/10 bg-[linear-gradient(145deg,rgba(255,255,255,0.075),rgba(255,255,255,0.026))] opacity-0 shadow-[0_4px_24px_rgba(0,0,0,0.3),inset_0_1px_0_rgba(255,255,255,0.05)] backdrop-blur-3xl backdrop-saturate-[1.25] will-change-transform transition-[transform,box-shadow] duration-700 ease-out hover:!-translate-y-[7px] hover:!scale-[1.018] hover:shadow-[0_24px_70px_rgba(0,0,0,0.45),0_0_48px_rgba(232,160,48,0.12),inset_0_1px_0_rgba(255,255,255,0.1)]';
 
-function formatEventDate(value: number) {
-  return new Date(value).toLocaleDateString('zh-CN', { year: 'numeric', month: '2-digit', day: '2-digit' }).replace(/\//g, '.');
+function formatEventDate(value: string) {
+  return new Date(normalizeTime(value)).toLocaleDateString('zh-CN', { year: 'numeric', month: '2-digit', day: '2-digit' }).replace(/\//g, '.');
 }
 
-function extractYear(value: number) {
-  return String(new Date(value).getFullYear());
+function extractYear(value: string) {
+  return String(new Date(normalizeTime(value)).getFullYear());
 }
 
 interface MilestonePageClientProps {
@@ -86,7 +87,13 @@ export default function MilestonePageClient({ list }: MilestonePageClientProps) 
   const [previewIndex, setPreviewIndex] = useState(0);
   const dragState = useRef({ isDown: false, startX: 0, scrollLeft: 0 });
 
-  const events = useMemo(() => [...list].sort((a, b) => a.eventDate - b.eventDate || a.id - b.id), [list]);
+  const events = useMemo(
+    () =>
+      [...list].sort(
+        (a, b) => new Date(normalizeTime(a.eventDate)).getTime() - new Date(normalizeTime(b.eventDate)).getTime() || a.id - b.id,
+      ),
+    [list],
+  );
   const previewPhotos = useMemo<PhotoItem[]>(() => events.filter((event) => event.image).map((event) => ({ id: `${event.id}`, url: event.image!, alt: event.title })), [events]);
 
   const openPreview = useCallback(
