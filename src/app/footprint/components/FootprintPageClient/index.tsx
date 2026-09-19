@@ -124,7 +124,7 @@ export default function FootprintPageClient({ list }: FootprintPageClientProps) 
                                                         </svg>
                                                     </span>
                                                    
-                                                    <span>${dayjs(normalizeTime(data?.createTime!)).format('YYYY-MM-DD HH:mm')}</span>
+                                                    <span>${dayjs(normalizeTime(data?.createTime)).format('YYYY-MM-DD HH:mm')}</span>
                                                 </div>
 
                                                 <div style="display: flex; align-items: center; color: rgba(255,255,255,0.8); font-size: 13px;">
@@ -229,7 +229,7 @@ export default function FootprintPageClient({ list }: FootprintPageClientProps) 
           <div className="mb-8 flex w-full flex-col justify-between">
             <p className="max-h-[210px] overflow-auto px-[5px] text-[#d6d6d6]">{data?.content}</p>
             <div className="pt-2 text-end text-sm text-[#a5a5a5]">
-              <p>时间：{dayjs(normalizeTime(data?.createTime!)).format('YYYY-MM-DD HH:mm')}</p>
+              <p>时间：{dayjs(normalizeTime(data?.createTime)).format('YYYY-MM-DD HH:mm')}</p>
               <p>地址：{data?.address}</p>
             </div>
           </div>

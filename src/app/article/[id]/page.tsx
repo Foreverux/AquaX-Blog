@@ -163,7 +163,7 @@ export default async (props: Props) => {
                       <span className={`${iconSty} bg-[#5A9CF8]`}>
                         <LuTimer />
                       </span>
-                      <span>{dayjs(normalizeTime(data?.createTime!)).format('YYYY-MM-DD HH:mm')}</span>
+                      <span>{dayjs(normalizeTime(data?.createTime)).format('YYYY-MM-DD HH:mm')}</span>
                     </div>
                   </div>
                 </div>

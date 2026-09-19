@@ -247,7 +247,6 @@ export function GalleryWidget({
             className="tx-widget__gallery-item"
             onClick={() => onPreview?.(item.src, urls)}
           >
-            {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src={item.src} alt={item.alt || `gallery-${index + 1}`} />
           </button>
         ))}

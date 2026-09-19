@@ -57,7 +57,7 @@ export async function GET() {
         ]
         : [],
       copyright: 'AquaX 现代化博客管理系统',
-      date: new Date(normalizeTime(item?.createTime!)),
+      date: new Date(normalizeTime(item.createTime)),
     });
   });
 
